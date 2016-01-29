@@ -2,8 +2,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
 
 public class Map extends JPanel{
 	private List<Obstacle> obstacles;
@@ -63,7 +64,7 @@ public class Map extends JPanel{
           super.paintComponent(g);
           
           for(Cable c:cables){
-          	LinkedList<Coord> points = (LinkedList) c.getAngles();
+          	LinkedList<Coord> points = (LinkedList<Coord>) c.getAngles();
           	g.drawLine(points.getFirst().getX() , points.getFirst().getY() , points.getLast().getX() , points.getLast().getY());
           	
           	for(int i=1;i<points.size();i++){
@@ -72,7 +73,7 @@ public class Map extends JPanel{
           }
           
           for(Obstacle o:obstacles){
-          	LinkedList<Coord> points = (LinkedList) o.getSommets();
+          	LinkedList<Coord> points = (LinkedList<Coord>) o.getSommets();
           	g.drawLine(points.getFirst().getX() , points.getFirst().getY() , points.getLast().getX() , points.getLast().getY());
           	
           	for(int i=1;i<points.size();i++){
