@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.LinkedList;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,22 +6,24 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 
 public class Map extends JPanel{
-	private List<Obstacle> obstacles;
+	private LinkedList<Obstacle> obstacles;
 	//private List<PointDep> pointsDep;
 	//private List<PointArr> pointsArr;
-	private List<Cable> cables;
+	private LinkedList<Cable> cables;
 	private Algo algo;
+	private LinkedList<Sommet> graphe;
 	
 	public Map(){
 		 setPreferredSize(new Dimension(750, 750));
 		 this.obstacles = new LinkedList<Obstacle>();
 		 this.cables = new LinkedList<Cable>();
+		 this.graphe = new LinkedList<Sommet>();
 	}
 	
-	public List<Obstacle> getObstacles() {
+	public LinkedList<Obstacle> getObstacles() {
 		return obstacles;
 	}
-	public void setObstacles(List<Obstacle> obstacles) {
+	public void setObstacles(LinkedList<Obstacle> obstacles) {
 		this.obstacles = obstacles;
 	}
 	public void addObstacle(Obstacle obstacle){
@@ -43,15 +44,15 @@ public class Map extends JPanel{
 		this.pointsArr = pointsArr;
 	}*/
 	
-	public List<Cable> getCables() {
+	public LinkedList<Cable> getCables() {
 		return cables;
 	}
-	public void setCables(List<Cable> cables) {
+	public void setCables(LinkedList<Cable> cables) {
 		this.cables = cables;
 	}
-	/*public void addCable(Cable cable){
+	public void addCable(Cable cable){
 		this.cables.add(cable);
-	}*/
+	}
 	
 	public Algo getAlgo() {
 		return algo;
@@ -81,5 +82,13 @@ public class Map extends JPanel{
           	}
           }
      }
+
+	public LinkedList<Sommet> getGraphe() {
+		return graphe;
+	}
+
+	public void setGraphe(LinkedList<Sommet> graphe) {
+		this.graphe = graphe;
+	}
 	
 }

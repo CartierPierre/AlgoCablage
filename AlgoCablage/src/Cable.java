@@ -1,12 +1,18 @@
-import java.util.List;
+import java.util.LinkedList;
 
 public class Cable {
-	private List<Coord> angles;
+	private LinkedList<Coord> angles;
 	
-	public List<Coord> getAngles() {
+	public LinkedList<Coord> getAngles() {
 		return angles;
 	}
-	public void setAngles(List<Coord> angles) {
+	public void setAngles(LinkedList<Coord> angles) {
 		this.angles = angles;
+	}
+	public void addAngle(Coord coord){
+		angles.add(coord);
+	}
+	public void resetAngles(){
+		angles.clear();
 	}
 }

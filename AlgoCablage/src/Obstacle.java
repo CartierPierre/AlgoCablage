@@ -1,15 +1,15 @@
-import java.util.List;
+import java.util.LinkedList;
 
 public class Obstacle {
-	private List<Coord> sommets;
+	private LinkedList<Coord> sommets;
 
-	public Obstacle(List<Coord> sommets) {
+	public Obstacle(LinkedList<Coord> sommets) {
 		this.sommets = sommets;
 	}
-	public List<Coord> getSommets() {
+	public LinkedList<Coord> getSommets() {
 		return sommets;
 	}
-	public void setSommets(List<Coord> sommets) {
+	public void setSommets(LinkedList<Coord> sommets) {
 		this.sommets = sommets;
 	}
 }

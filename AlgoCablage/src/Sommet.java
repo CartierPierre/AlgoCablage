@@ -1,16 +1,17 @@
 import java.util.LinkedList;
-import java.util.List;
 
 public class Sommet extends Coord {
 
 	private int distFromStart; //Distance du hub
-	private List<Arc> arcs;
+	private LinkedList<Arc> arcs;
+	private Sommet pere;
 	
 	
 	public Sommet(int x, int y) {
 		super(x, y);
 		distFromStart = Integer.MAX_VALUE;
 		this.arcs = new LinkedList<Arc>();
+		this.pere = null;
 	}
 
 
@@ -24,13 +25,23 @@ public class Sommet extends Coord {
 	}
 
 
-	public List<Arc> getArcs() {
+	public LinkedList<Arc> getArcs() {
 		return arcs;
 	}
 
 
-	public void setArcs(List<Arc> arcs) {
+	public void setArcs(LinkedList<Arc> arcs) {
 		this.arcs = arcs;
+	}
+
+
+	public Sommet getPere() {
+		return pere;
+	}
+
+
+	public void setPere(Sommet pere) {
+		this.pere = pere;
 	}
 	
 	
