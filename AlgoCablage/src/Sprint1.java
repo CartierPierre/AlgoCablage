@@ -27,6 +27,33 @@ public class Sprint1 {
 		LinkedList<Coord> listObs4 = new LinkedList<Coord>(Arrays.asList(new Coord(400,400),new Coord(400,600),new Coord(600,600),new Coord(600,400)));
 		Obstacle obs4 = new Obstacle(listObs4);
 		
+		LinkedList<Coord> listSommets1 = new LinkedList<Coord>(Arrays.asList(new Coord(50,50),new Coord(350,50),new Coord(650,50),new Coord(50,350),new Coord(350,350),new Coord(650,350),new Coord(50,650),new Coord(350,650),new Coord(650,650),));
+		
+		somA=new Sommet(50,50); 
+		somB=new Sommet(350,50); 
+		somC=new Sommet(650,50); 
+		somD=new Sommet(50,350); 
+		somE=new Sommet(350,350); 
+		somF=new Sommet(650,350); 
+		somG=new Sommet(50,650); 
+		somH=new Sommet(350,650); 
+		somI=new Sommet(650,650);
+		
+		LinkedList<Arc> listArcA = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somD,300)));
+		LinkedList<Arc> listArcB = new LinkedList<Arc>(Arrays.asList(new Coord(somA,300),new Coord(somC,300),new Coord(somE,300)));
+		LinkedList<Arc> listArcC = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somF,300)));
+		LinkedList<Arc> listArcD = new LinkedList<Arc>(Arrays.asList(new Coord(somA,300),new Coord(somG,300),new Coord(somE,300)));
+		LinkedList<Arc> listArcE = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somD,300),new Coord(somF,300),new Coord(somH,300)));
+		LinkedList<Arc> listArcF = new LinkedList<Arc>(Arrays.asList(new Coord(somC,300),new Coord(somI,300),new Coord(somE,300)));
+		LinkedList<Arc> listArcG = new LinkedList<Arc>(Arrays.asList(new Coord(somH,300),new Coord(somD,300)));
+		LinkedList<Arc> listArcH = new LinkedList<Arc>(Arrays.asList(new Coord(somG,300),new Coord(somI,300),new Coord(somE,300)));
+		LinkedList<Arc> listArcI = new LinkedList<Arc>(Arrays.asList(new Coord(somH,300),new Coord(somF,300)));
+		
+		som.setArc(listArc);
+		som.setArc(listArc);
+		som.setArc(listArc);
+		
+		
 		map1.addObstacle(obsUp);
 		map1.addObstacle(obsLeft);
 		map1.addObstacle(obsDown);
