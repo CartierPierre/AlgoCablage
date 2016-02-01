@@ -49,9 +49,15 @@ public class Sprint1 {
 		LinkedList<Arc> listArcH = new LinkedList<Arc>(Arrays.asList(new Coord(somG,300),new Coord(somI,300),new Coord(somE,300)));
 		LinkedList<Arc> listArcI = new LinkedList<Arc>(Arrays.asList(new Coord(somH,300),new Coord(somF,300)));
 		
-		som.setArc(listArc);
-		som.setArc(listArc);
-		som.setArc(listArc);
+		somA.setArc(listArcA);
+		somB.setArc(listArcB);
+		somC.setArc(listArcC);
+		somD.setArc(listArcD);
+		somE.setArc(listArcE);
+		somF.setArc(listArcF);
+		somG.setArc(listArcG);
+		somH.setArc(listArcH);
+		somI.setArc(listArcI);
 		
 		
 		map1.addObstacle(obsUp);
