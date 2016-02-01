@@ -3,6 +3,9 @@ import java.util.LinkedList;
 public class Cable {
 	private LinkedList<Coord> angles;
 	
+	public Cable() {
+		this.angles = new LinkedList<Coord>();
+	}
 	public LinkedList<Coord> getAngles() {
 		return angles;
 	}
@@ -13,6 +16,6 @@ public class Cable {
 		angles.add(coord);
 	}
 	public void resetAngles(){
-		angles.clear();
+		angles.removeAll(angles);
 	}
 }

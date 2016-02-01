@@ -66,7 +66,7 @@ public class Map extends JPanel{
           
           for(Cable c:cables){
           	LinkedList<Coord> points = (LinkedList<Coord>) c.getAngles();
-          	g.drawLine(points.getFirst().getX() , points.getFirst().getY() , points.getLast().getX() , points.getLast().getY());
+          	//g.drawLine(points.getFirst().getX() , points.getFirst().getY() , points.getLast().getX() , points.getLast().getY());
           	
           	for(int i=1;i<points.size();i++){
           		g.drawLine(points.get(i-1).getX() , points.get(i-1).getY() , points.get(i).getX() , points.get(i).getY());

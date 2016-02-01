@@ -27,38 +27,53 @@ public class Sprint1 {
 		LinkedList<Coord> listObs4 = new LinkedList<Coord>(Arrays.asList(new Coord(400,400),new Coord(400,600),new Coord(600,600),new Coord(600,400)));
 		Obstacle obs4 = new Obstacle(listObs4);
 		
-		LinkedList<Coord> listSommets1 = new LinkedList<Coord>(Arrays.asList(new Coord(50,50),new Coord(350,50),new Coord(650,50),new Coord(50,350),new Coord(350,350),new Coord(650,350),new Coord(50,650),new Coord(350,650),new Coord(650,650),));
+		//LinkedList<Coord> listSommets1 = new LinkedList<Coord>(Arrays.asList(new Coord(50,50),new Coord(350,50),new Coord(650,50),new Coord(50,350),new Coord(350,350),new Coord(650,350),new Coord(50,650),new Coord(350,650),new Coord(650,650),));
 		
-		somA=new Sommet(50,50); 
-		somB=new Sommet(350,50); 
-		somC=new Sommet(650,50); 
-		somD=new Sommet(50,350); 
-		somE=new Sommet(350,350); 
-		somF=new Sommet(650,350); 
-		somG=new Sommet(50,650); 
-		somH=new Sommet(350,650); 
-		somI=new Sommet(650,650);
+		Sommet somA=new Sommet(50,50); 
+		Sommet somB=new Sommet(350,50); 
+		Sommet somC=new Sommet(650,50); 
+		Sommet somD=new Sommet(50,350); 
+		Sommet somE=new Sommet(350,350); 
+		Sommet somF=new Sommet(650,350); 
+		Sommet somG=new Sommet(50,650); 
+		Sommet somH=new Sommet(350,650); 
+		Sommet somI=new Sommet(650,650);
 		
-		LinkedList<Arc> listArcA = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somD,300)));
-		LinkedList<Arc> listArcB = new LinkedList<Arc>(Arrays.asList(new Coord(somA,300),new Coord(somC,300),new Coord(somE,300)));
-		LinkedList<Arc> listArcC = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somF,300)));
-		LinkedList<Arc> listArcD = new LinkedList<Arc>(Arrays.asList(new Coord(somA,300),new Coord(somG,300),new Coord(somE,300)));
-		LinkedList<Arc> listArcE = new LinkedList<Arc>(Arrays.asList(new Coord(somB,300),new Coord(somD,300),new Coord(somF,300),new Coord(somH,300)));
-		LinkedList<Arc> listArcF = new LinkedList<Arc>(Arrays.asList(new Coord(somC,300),new Coord(somI,300),new Coord(somE,300)));
-		LinkedList<Arc> listArcG = new LinkedList<Arc>(Arrays.asList(new Coord(somH,300),new Coord(somD,300)));
-		LinkedList<Arc> listArcH = new LinkedList<Arc>(Arrays.asList(new Coord(somG,300),new Coord(somI,300),new Coord(somE,300)));
-		LinkedList<Arc> listArcI = new LinkedList<Arc>(Arrays.asList(new Coord(somH,300),new Coord(somF,300)));
+		LinkedList<Arc> listArcA = new LinkedList<Arc>(Arrays.asList(new Arc(somB,300),new Arc(somD,300)));
+		LinkedList<Arc> listArcB = new LinkedList<Arc>(Arrays.asList(new Arc(somC,300),new Arc(somE,300)));
+		LinkedList<Arc> listArcC = new LinkedList<Arc>(Arrays.asList(new Arc(somF,300)));
+		LinkedList<Arc> listArcD = new LinkedList<Arc>(Arrays.asList(new Arc(somG,300),new Arc(somE,300)));
+		LinkedList<Arc> listArcE = new LinkedList<Arc>(Arrays.asList(new Arc(somF,300),new Arc(somH,300)));
+		LinkedList<Arc> listArcF = new LinkedList<Arc>(Arrays.asList());
+		LinkedList<Arc> listArcG = new LinkedList<Arc>(Arrays.asList(new Arc(somH,300)));
+		LinkedList<Arc> listArcH = new LinkedList<Arc>(Arrays.asList(new Arc(somI,300)));
+		LinkedList<Arc> listArcI = new LinkedList<Arc>(Arrays.asList());
 		
-		somA.setArc(listArcA);
-		somB.setArc(listArcB);
-		somC.setArc(listArcC);
-		somD.setArc(listArcD);
-		somE.setArc(listArcE);
-		somF.setArc(listArcF);
-		somG.setArc(listArcG);
-		somH.setArc(listArcH);
-		somI.setArc(listArcI);
+		somA.setArcs(listArcA);
+		somA.setDistFromStart(0);
+		somB.setArcs(listArcB);
+		somC.setArcs(listArcC);
+		somD.setArcs(listArcD);
+		somE.setArcs(listArcE);
+		somF.setArcs(listArcF);
+		somG.setArcs(listArcG);
+		somH.setArcs(listArcH);
+		somI.setArcs(listArcI);
 		
+		LinkedList<Sommet> graphe = new LinkedList<Sommet>(Arrays.asList(somA, somB, somC, somD, somE, somF, somG, somH, somI));
+		
+		Algo algo=new Algo();
+		
+		algo.dijkstra(graphe);
+		if(somA.getPere()==null) System.out.println("Racine");
+		
+		Cable cableI = new Cable();
+		Cable cableG = new Cable();
+		
+		algo.cheminLePLusCourt(somI, cableI);
+		map1.addCable(cableI);
+		algo.cheminLePLusCourt(somG, cableG);
+		map1.addCable(cableG);
 		
 		map1.addObstacle(obsUp);
 		map1.addObstacle(obsLeft);
