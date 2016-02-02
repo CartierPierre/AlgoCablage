@@ -33,6 +33,10 @@ public class Sommet extends Coord {
 	public void setArcs(LinkedList<Arc> arcs) {
 		this.arcs = arcs;
 	}
+	
+	public void addArc(Arc arc){
+		arcs.add(arc);
+	}
 
 
 	public Sommet getPere() {
