@@ -13,10 +13,10 @@ public class Algo {
 		}
 		for(Sommet som:graphe){ //Puis on les relie aux autres proches
 			for(Sommet fils:graphe){
-				if(som.getX() + pas == fils.getX()  && som.getY() == fils.getY()){ //Arc ‡ droite
+				if(som.getX() + pas == fils.getX()  && som.getY() == fils.getY()){ //Arc √† droite
 					som.addArc(new Arc(fils, pas));
 				}
-				else if(som.getX() - pas== fils.getX()  && som.getY() == fils.getY()){ //Arc ‡ gauche
+				else if(som.getX() - pas== fils.getX()  && som.getY() == fils.getY()){ //Arc √† gauche
 					som.addArc(new Arc(fils, pas));
 				}
 				else if(som.getY() + pas== fils.getY()  && som.getX() == fils.getX()){ //Arc en bas
@@ -33,7 +33,7 @@ public class Algo {
 	
 	public void dijkstra(LinkedList<Sommet> graphe){
 		for(Sommet sommet:graphe){ //Pour chaque sommet du graphe
-			for(Arc arc:sommet.getArcs()){ // On met a jour la distance de tous les sommets reliÈs
+			for(Arc arc:sommet.getArcs()){ // On met a jour la distance de tous les sommets reli√©s
 				if(arc.getSommet().getDistFromStart() > arc.getLongueur() + sommet.getDistFromStart()){ //Si elle est plus courte
 					arc.getSommet().setDistFromStart(arc.getLongueur() + sommet.getDistFromStart());
 					arc.getSommet().setPere(sommet); //On met a jour le pere
@@ -58,9 +58,10 @@ public class Algo {
 		}
 		cable.resetAngles();
 		while(tmpSommet != null){ 
-			cable.addAngle(tmpSommet); //On ajoute les segments (angles plats) -> Il faut amÈliorer pour n'avoir que les angles
+			cable.addAngle(tmpSommet); //On ajoute les segments (angles plats) -> Il faut am√©liorer pour n'avoir que les angles
 			tmpSommet=tmpSommet.getPere();
 		}
+		cable.epurer();
 	}
 	
 	
