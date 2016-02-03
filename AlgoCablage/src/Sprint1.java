@@ -58,14 +58,11 @@ public class Sprint1 {
 		
 		algo.dijkstra(graphe);
 		
-		Cable cable1 = new Cable();
-		Cable cable2 = new Cable();
-		
 		/*On trace les meilleurs chemins pour 2 points (attention a prendre un point sur le graphe)*/
 		
-		algo.cheminLePLusCourt(graphe, 650, 650, cable1);
+		Cable cable1 = algo.cheminLePLusCourt(graphe, 650, 650);
 		map1.addCable(cable1);
-		algo.cheminLePLusCourt(graphe, 50, 650, cable2);
+		Cable cable2 = algo.cheminLePLusCourt(graphe, 50, 650);
 		map1.addCable(cable2);
 		
 		/*Affichage de la map*/

@@ -19,13 +19,13 @@ public class Cable {
 		angles.removeAll(angles);
 	}
 	/**
-	 *Retire les angles superflus lorque 3 angles consÃ©cutifs ont les mÃªmes valeurs de x ou y
+	 *Retire les angles superflux lorsque 3 angles consécutifs ont les mêmes valeurs de x ou y
 	*/
 	public void epurerAngles(){
 		for(int i=2;i<angles.size();i++){
 			if(angles.get(i-2).getX() == angles.get(i-1).getX() && angles.get(i-2).getX() == angles.get(i).getX())
 				angles.remove(i-1);
-			if(angles.get(i-2).getY() == angles.get(i-1).getY() && angles.get(i-2).getY() == angles.get(i).getY())
+			else if(angles.get(i-2).getY() == angles.get(i-1).getY() && angles.get(i-2).getY() == angles.get(i).getY())
 				angles.remove(i-1);
 		}
 	}

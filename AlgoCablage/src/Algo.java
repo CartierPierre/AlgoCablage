@@ -51,17 +51,18 @@ public class Algo {
 		}
 	}*/
 	
-	public void cheminLePLusCourt(LinkedList<Sommet> graphe, int x, int y, Cable cable){ // Transforme le dijkstra en angles pour le cable
+	public Cable cheminLePLusCourt(LinkedList<Sommet> graphe, int x, int y){ // Transforme le dijkstra en angles pour le cable
 		Sommet tmpSommet=null;
+		Cable cable = new Cable();
 		for(Sommet sommet:graphe){ //On cherche le sommet du graphe aux coordonnees (x,y)
 			if(sommet.getX() == x && sommet.getY() == y) tmpSommet=sommet;
 		}
-		cable.resetAngles();
 		while(tmpSommet != null){ 
 			cable.addAngle(tmpSommet); //On ajoute les segments (angles plats) -> Il faut améliorer pour n'avoir que les angles
 			tmpSommet=tmpSommet.getPere();
 		}
-		cable.epurer();
+		cable.epurerAngles();
+		return cable;
 	}
 	
 	
