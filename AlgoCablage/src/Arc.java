@@ -24,5 +24,8 @@ public class Arc {
 		this.longueur = longueur;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Arc [sommet=" + sommet.stringCoord() + ", longueur=" + longueur + "]";
+	}
 }

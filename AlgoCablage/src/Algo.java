@@ -33,8 +33,8 @@ public class Algo {
 	
 	public void dijkstra(LinkedList<Sommet> graphe){
 		for(Sommet sommet:graphe){ //Pour chaque sommet du graphe
-			for(Arc arc:sommet.getArcs()){ // On met a jour la distance de tous les sommets reliÃ©s
-				if(arc.getSommet().getDistFromStart() > arc.getLongueur() + sommet.getDistFromStart()){ //Si elle est plus courte
+			for(Arc arc:sommet.getArcs()){ // On met a jour la distance de tous les sommets reliés
+				if(arc.getSommet().getDistFromStart() - sommet.getDistFromStart() > arc.getLongueur()){ //Si elle est plus courte
 					arc.getSommet().setDistFromStart(arc.getLongueur() + sommet.getDistFromStart());
 					arc.getSommet().setPere(sommet); //On met a jour le pere
 				}			
@@ -65,5 +65,63 @@ public class Algo {
 		return cable;
 	}
 	
+	public Sommet sortirObs(LinkedList<Sommet> graphe, Obstacle obs, Coord point){ //Version sortie la plus proche
+		int dist=Integer.MAX_VALUE;
+		int x=point.getX(); //Sécurité si x et y sont inchangés
+		int y=point.getY();
+		if(dist>Math.abs(point.getX()-obs.getMaxX())){ //Vers la droite
+			dist=Math.abs(point.getX()-obs.getMaxX());
+			x=obs.getMaxX();
+			y=point.getY();
+		}
+		if(dist>Math.abs(point.getX()-obs.getMinX())){ //Vers la gauche
+			dist=Math.abs(point.getX()-obs.getMinX());
+			x=obs.getMinX();
+			y=point.getY();
+		}
+		if(dist>Math.abs(point.getY()-obs.getMaxY())){ //Vers le bas
+			dist=Math.abs(point.getY()-obs.getMaxY());
+			y=obs.getMaxY();
+			x=point.getX();
+		}
+		if(dist>Math.abs(point.getY()-obs.getMinY())){ //Vers le haut
+			dist=Math.abs(point.getY()-obs.getMinY());
+			y=obs.getMinY();
+			x=point.getX();
+		}
+		Sommet sortie=new Sommet(x, y);
+		Sommet ext=new Sommet(point.getX(), point.getY());
+		sortie.addArc(new Arc(ext , dist)); //On ajoute l'arc intra-obstacle
+		ext.addArc(new Arc(sortie, dist));
+		graphe.add(ext);
+		System.out.println(ext);
+		System.out.println(sortie);
+		return sortie; //On retourne un sommet avec un arc vers l'extremite du cable de l'obstacle
+	}
+	
+	public void relierObstacleGraphe(Map map, LinkedList<Sommet> graphe, Sommet point){ //Manque de précision
+		int x=point.getX();
+		int y=point.getY();
+		Sommet plusProche=null;
+		int distancePlusProche=Integer.MAX_VALUE;
+		for (Sommet sommet:graphe){ // On cherche le point du graphe le plus proche
+			if((distancePlusProche>Math.abs(sommet.getX()-x)+Math.abs(sommet.getY()-y)) && map.positionLibre(sommet.getX(), sommet.getY())){
+				distancePlusProche=Math.abs(sommet.getX()-x)+Math.abs(sommet.getY()-y);
+				plusProche=sommet;
+			}
+		}
+		plusProche.addArc(new Arc(point, distancePlusProche)); //Ajoute une diagonale ....
+		point.addArc(new Arc(plusProche, distancePlusProche));
+		System.out.println(plusProche);
+		System.out.println(point);
+		graphe.add(point); //On rajoute le point sur le graphe
+	}
+	
+	/* A FAIRE
+	 * FUSIONNER LES DEUX ALGO,
+	 * ON PEUT RECUPERER L'AXE POUR SORTIR DROIT AVANT DE FAIRE LE VIRAGE
+	 * 
+	 * IL RESTERA A GERER LE CAS DES PETITS ALLERS RETOUR SUR UN AXE AU MOMENT DE REJOINDRE LE GRAPHE
+	 * */
 	
 }

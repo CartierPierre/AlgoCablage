@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Sommet extends Coord {
@@ -48,6 +49,21 @@ public class Sommet extends Coord {
 		this.pere = pere;
 	}
 	
-	
+	public String stringCoord() {
+		return "[x=" + this.getX() + ", y=" + this.getY() + "]";
+	}
+	@Override
+	public String toString() {
+		Iterator<Arc>itArc=arcs.iterator(); 
+		String chaineArs="";
+		String chainep="";
+		if( pere!=null) 
+		chainep=pere.stringCoord(); 
+		while(itArc.hasNext())
+		{
+			chaineArs=chaineArs+"\n"+itArc.next().toString(); 
+		}
+		return "Sommet [x="+this.getX() + ", y=" + this.getY() +", distFromStart=" + distFromStart + ", arcs=" + chaineArs + ", pere=" +chainep+   "]";
+	}
 
 }

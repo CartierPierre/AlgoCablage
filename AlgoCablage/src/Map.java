@@ -119,4 +119,22 @@ public class Map extends JPanel{
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		String chaineOb=""; 
+		for(Obstacle obs:obstacles){
+			chaineOb=chaineOb+"\n"+obs.toString(); 
+		} 
+		String chaineCb=""; 
+		for(Cable cable:cables){
+			chaineCb=chaineCb+"\n"+cable.toString(); 
+		}
+		String chaineGraphe=""; 
+		for(Sommet sommet:graphe){
+			chaineGraphe=chaineGraphe+"\n"+sommet.toString(); 
+		}
+		return "Map [obstacles=" + chaineOb + ", cables=" + chaineCb + ", graphe=" + chaineGraphe
+				+ ", tailleX=" + tailleX + ", tailleY=" + tailleY + "]";
+	}
+	
 }
