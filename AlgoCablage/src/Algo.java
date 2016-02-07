@@ -117,11 +117,46 @@ public class Algo {
 		graphe.add(point); //On rajoute le point sur le graphe
 	}
 	
+	public void relierExtremiteGraphe(Map map, LinkedList<Sommet> graphe, Coord point){ //Fusion des deux précedentes méthodes
+		int x=point.getX();
+		int y=point.getY();
+		Sommet plusProche=null;
+		Sommet ext=new Sommet(x, y);
+		int distancePlusProche=Integer.MAX_VALUE;
+		for (Sommet sommet:graphe){ // On cherche le point du graphe le plus proche
+			if((distancePlusProche>Math.abs(sommet.getX()-x)+Math.abs(sommet.getY()-y)) && map.positionLibre(sommet.getX(), sommet.getY())){
+				distancePlusProche=Math.abs(sommet.getX()-x)+Math.abs(sommet.getY()-y);
+				plusProche=sommet;
+			}
+		}
+		if(plusProche.getX()==x || plusProche.getY()==y){ //Si l'extremite est alignée avec le graphe
+			plusProche.addArc(new Arc(ext, distancePlusProche)); //Ajoute l'arc droit
+			ext.addArc(new Arc(plusProche, distancePlusProche));
+		}else{ //Sinon c'est une diagonale, et on décompose avec un point intermédiaire
+			Sommet inter=null;
+			if(Math.abs(plusProche.getX()-x) >= Math.abs(plusProche.getY()-y)){ //Si la distance sur x est plus grande
+				inter=new Sommet(plusProche.getX(), y);
+				inter.addArc(new Arc(ext, Math.abs(plusProche.getX()-x)));
+				ext.addArc(new Arc(inter, Math.abs(plusProche.getX()-x)));
+				inter.addArc(new Arc(plusProche, Math.abs(plusProche.getY()-y)));
+				plusProche.addArc(new Arc(inter, Math.abs(plusProche.getY()-y)));
+			} else {
+				inter=new Sommet(x, plusProche.getY());
+				inter.addArc(new Arc(ext, Math.abs(plusProche.getY()-y)));
+				ext.addArc(new Arc(inter, Math.abs(plusProche.getY()-y)));
+				inter.addArc(new Arc(plusProche, Math.abs(plusProche.getX()-x)));
+				plusProche.addArc(new Arc(inter, Math.abs(plusProche.getX()-x)));
+			}
+			graphe.add(inter); //On ajoute le point au graphe
+		}
+		graphe.add(ext); //On ajoute le point au graphe
+	}
+	
 	/* A FAIRE
-	 * FUSIONNER LES DEUX ALGO,
-	 * ON PEUT RECUPERER L'AXE POUR SORTIR DROIT AVANT DE FAIRE LE VIRAGE
 	 * 
-	 * IL RESTERA A GERER LE CAS DES PETITS ALLERS RETOUR SUR UN AXE AU MOMENT DE REJOINDRE LE GRAPHE
+	 * GERER LE CAS DES PETITS ALLERS RETOUR SUR UN AXE AU MOMENT DE REJOINDRE LE GRAPHE ( voir ext1 sur la visu)
+	 * 
+	 * Sprint 3 : faire un autre relierExtremiteGraphe mais en minimisant la distance du cable (partir en direction du hub directement plutot que de cherche le plus proche)
 	 * */
 	
 }

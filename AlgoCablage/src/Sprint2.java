@@ -26,13 +26,13 @@ public class Sprint2 {
 		/*Stands*/
 		LinkedList<Coord> listObs1 = new LinkedList<Coord>(Arrays.asList(new Coord(200,200),new Coord(300,200),new Coord(300,300),new Coord(200,300)));
 		Obstacle obs1 = new Obstacle(listObs1);
-		Coord ext1 = new Coord(250,250);
+		Coord ext1 = new Coord(220,240);
 		LinkedList<Coord> listObs2 = new LinkedList<Coord>(Arrays.asList(new Coord(400,100),new Coord(600,100),new Coord(600,300),new Coord(400,300)));
 		Obstacle obs2 = new Obstacle(listObs2);
 		Coord ext2 = new Coord(412,267);
 		LinkedList<Coord> listObs3 = new LinkedList<Coord>(Arrays.asList(new Coord(100,400),new Coord(100,600),new Coord(300,600),new Coord(300,400)));
 		Obstacle obs3 = new Obstacle(listObs3);
-		Coord ext3 = new Coord(289,512);
+		Coord ext3 = new Coord(289,490);
 		LinkedList<Coord> listObs4 = new LinkedList<Coord>(Arrays.asList(new Coord(400,400),new Coord(400,600),new Coord(600,600),new Coord(600,400)));
 		Obstacle obs4 = new Obstacle(listObs4);
 		Coord ext4 = new Coord(578,500);
@@ -59,10 +59,10 @@ public class Sprint2 {
 		hub.setDistFromStart(0);
 		
 		/*On ajoute les extremites des stands au graphe*/
-		algo.relierObstacleGraphe(map1, graphe, algo.sortirObs(graphe, obs1, ext1));
-		algo.relierObstacleGraphe(map1, graphe, algo.sortirObs(graphe, obs2, ext2));
-		algo.relierObstacleGraphe(map1, graphe, algo.sortirObs(graphe, obs3, ext3));
-		algo.relierObstacleGraphe(map1, graphe, algo.sortirObs(graphe, obs4, ext4));
+		algo.relierExtremiteGraphe(map1, graphe, ext1);
+		algo.relierExtremiteGraphe(map1, graphe, ext2);
+		algo.relierExtremiteGraphe(map1, graphe, ext3);
+		algo.relierExtremiteGraphe(map1, graphe, ext4);
 		
 		/*On met à jour les distances au hub avec un dijkstra*/
 		
@@ -88,10 +88,5 @@ public class Sprint2 {
 		fenetre.add(map1);
 		fenetre.setVisible(true);
 
-		//System.out.println(map1);
-		System.out.println(cable1);
-		System.out.println(cable2);
-		System.out.println(cable3);
-		System.out.println(cable4);
 	}
 }
