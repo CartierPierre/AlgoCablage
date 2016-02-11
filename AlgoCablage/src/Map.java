@@ -7,10 +7,9 @@ import javax.swing.JPanel;
 
 public class Map extends JPanel{
 	private LinkedList<Obstacle> obstacles;
-	//private List<PointDep> pointsDep; //A supprimer ?
-	//private List<PointArr> pointsArr; //A supprimer ?
+	private LinkedList<Coord> extremitesStand;
+	private LinkedList<Coord> extremitesHub;
 	private LinkedList<Cable> cables;
-	private Algo algo; //A supprimer ?
 	private LinkedList<Sommet> graphe;
 	private int tailleX;
 	private int tailleY;
@@ -20,6 +19,8 @@ public class Map extends JPanel{
 		 this.obstacles = new LinkedList<Obstacle>();
 		 this.cables = new LinkedList<Cable>();
 		 this.graphe = new LinkedList<Sommet>();
+		 this.extremitesStand = new LinkedList<Coord>();
+		 this.extremitesHub = new LinkedList<Coord>();
 		 this.tailleX=x;
 		 this.tailleY=y;
 	}
@@ -34,20 +35,26 @@ public class Map extends JPanel{
 		this.obstacles.add(obstacle);
 	}
 	
-	/*
-	public List<PointDep> getPointsDep() {
-		return pointsDep;
+	public LinkedList<Coord> getExtremitesStand() {
+		return extremitesStand;
 	}
-	public void setPointsDep(List<PointDep> pointsDep) {
-		this.pointsDep = pointsDep;
+
+	public void setExtremitesStand(LinkedList<Coord> extremitesStand) {
+		this.extremitesStand = extremitesStand;
 	}
-	public List<PointArr> getPointsArr() {
-		return pointsArr;
-	}
-	public void setPointsArr(List<PointArr> pointsArr) {
-		this.pointsArr = pointsArr;
-	}*/
 	
+	public void addExtremiteStand(Coord ext){
+		this.extremitesStand.add(ext);
+	}
+
+	public LinkedList<Coord> getExtremitesHub() {
+		return extremitesHub;
+	}
+
+	public void setExtremitesHub(LinkedList<Coord> extremitesHub) {
+		this.extremitesHub = extremitesHub;
+	}
+
 	public int getTailleX() {
 		return tailleX;
 	}
@@ -72,13 +79,6 @@ public class Map extends JPanel{
 	}
 	public void addCable(Cable cable){
 		this.cables.add(cable);
-	}
-	
-	public Algo getAlgo() {
-		return algo;
-	}
-	public void setAlgo(Algo algo) {
-		this.algo = algo;
 	}
 	
 	public void paintComponent(Graphics g) { //Affichage
