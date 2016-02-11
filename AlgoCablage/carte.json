@@ -1,0 +1,78 @@
+{
+	"obstacles":[
+		{"sommets":[
+			{"vertical": 200,
+			"horizontal":200
+			},
+			{"vertical": 200,
+			"horizontal":300
+			},
+			{"vertical": 300,
+			"horizontal":300
+			},
+			{"vertical": 300,
+			"horizontal":200
+			}]
+		},{"sommets":[
+			{"vertical": 100,
+			"horizontal":400
+			},
+			{"vertical": 100,
+			"horizontal":600
+			},
+			{"vertical": 300,
+			"horizontal":600
+			},
+			{"vertical": 300,
+			"horizontal":400
+			}]
+		},{"sommets":[
+			{"vertical": 400,
+			"horizontal":100
+			},
+			{"vertical": 400,
+			"horizontal":400
+			},
+			{"vertical": 600,
+			"horizontal":400
+			},
+			{"vertical": 600,
+			"horizontal":100
+			}]
+		},{"sommets":[
+			{"vertical": 400,
+			"horizontal":500
+			},
+			{"vertical": 400,
+			"horizontal":600
+			},
+			{"vertical": 600,
+			"horizontal":600
+			},
+			{"vertical": 600,
+			"horizontal":500
+			}]
+		}],
+		
+	"raccordHub":[
+		{"vertical": 50,
+		"horizontal":50
+		}],
+		
+	"raccordStand":[
+		{"vertical": 210,
+		"horizontal":210
+		},
+		{"vertical": 590,
+		"horizontal": 350
+		},
+		{"vertical": 289,
+		"horizontal":490
+		},
+		{"vertical": 580,
+		"horizontal":520
+		}]
+}
+		
+		
+		

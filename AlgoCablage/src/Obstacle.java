@@ -6,13 +6,20 @@ public class Obstacle {
 	public Obstacle(LinkedList<Coord> sommets) {
 		this.sommets = sommets;
 	}
+	public Obstacle() {
+		this.sommets = new LinkedList<Coord>();
+	}
 	public LinkedList<Coord> getSommets() {
 		return sommets;
 	}
 	public void setSommets(LinkedList<Coord> sommets) {
 		this.sommets = sommets;
 	}
-	/*Les 4 méthodes suivantes permettent de recuperer les coordonnées min et max d'un obstacle (attention, il est casté en rectangle)*/
+	
+	public void addSommets(Coord sommet) {
+		this.sommets.add(sommet);
+	}
+	/*Les 4 methodes suivantes permettent de recuperer les coordonnees min et max d'un obstacle (attention, il est caste en rectangle)*/
 	public int getMinX(){
 		int min = Integer.MAX_VALUE;
 		for(Coord coord:sommets){
