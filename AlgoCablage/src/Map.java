@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class Map extends JPanel{
 	private LinkedList<Obstacle> obstacles;
 	private LinkedList<Coord> extremitesStand;
-	private LinkedList<Coord> extremitesHub;
+	private Coord extremitesHub;
 	private LinkedList<Cable> cables;
 	private LinkedList<Sommet> graphe;
 	private int tailleX;
@@ -56,9 +56,10 @@ public class Map extends JPanel{
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
-			for(int i = 0;i<listHubs.size() ;i++){
+			/*for(int i = 0;i<listHubs.size() ;i++){
 				extremitesHub.add(new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
-			}
+			}*/
+			extremitesHub = new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
 		}catch(FileNotFoundException e){
 			System.err.print("erreur");
 			System.exit(0);
