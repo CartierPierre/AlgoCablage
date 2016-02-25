@@ -75,6 +75,7 @@ public class Sprint2 {
 			/*Affichage de la map*/
 			 
 			JFrame fenetre = new JFrame();
+			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			fenetre.setSize(tailleX, tailleY);
 			fenetre.add(map1);
 			fenetre.setVisible(true);
