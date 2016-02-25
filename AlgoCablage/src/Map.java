@@ -52,7 +52,7 @@ public class Map extends JPanel{
 			
 			JsonArray listStands=carte.getJsonArray("raccordStand");
 			for(int i = 0;i<listStands.size() ;i++){
-				extremitesStand.add(new Coord(listStands.getJsonObject(i).getInt("horizontal"),listStands.getJsonObject(i).getInt("vertical")));
+				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal"),listStands.getJsonObject(0).getInt("vertical")));
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
