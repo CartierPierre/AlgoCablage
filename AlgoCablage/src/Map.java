@@ -13,6 +13,11 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 
 public class Map extends JPanel{
+	
+	
+	static final int taille_div = 3;
+	
+	
 	private LinkedList<Obstacle> obstacles;
 	private LinkedList<Coord> extremitesStand;
 	private Coord extremitesHub;
@@ -28,8 +33,8 @@ public class Map extends JPanel{
 		 this.graphe = new LinkedList<Sommet>();
 		 this.extremitesStand = new LinkedList<Coord>();
 		 this.extremitesHub = null;
-		 this.tailleX=x;
-		 this.tailleY=y;
+		/* this.tailleX=x;
+		 this.tailleY=y;*/
 		 
 		 JsonObject carte;
 		try{
@@ -39,27 +44,33 @@ public class Map extends JPanel{
 			
 			Obstacle tmpObs;
 			
+			JsonObject taille=carte.getJsonObject("taille");
+			tailleX=taille.getInt("horizontal")/taille_div;
+			tailleY=taille.getInt("vertical")/taille_div;
+			 setPreferredSize(new Dimension(tailleX, tailleY));
+			
+			
 			JsonArray listObstacles=carte.getJsonArray("obstacles");
 			for(int i = 0;i<listObstacles.size() ;i++){
 				JsonObject obstacle = listObstacles.getJsonObject(i);
 				JsonArray listSommets = obstacle.getJsonArray("sommets");
 				tmpObs=new Obstacle();
 				for(int j = 0;j<listSommets.size() ;j++){
-					tmpObs.addSommets( new Coord(listSommets.getJsonObject(j).getInt("horizontal")/10,listSommets.getJsonObject(j).getInt("vertical")/10));
+					tmpObs.addSommets( new Coord(listSommets.getJsonObject(j).getInt("horizontal")/taille_div,listSommets.getJsonObject(j).getInt("vertical")/taille_div));
 				}
 				obstacles.add(tmpObs);
 			}
 			
 			JsonArray listStands=carte.getJsonArray("raccordStand");
 			for(int i = 0;i<listStands.size() ;i++){
-				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal")/10,listStands.getJsonObject(0).getInt("vertical")/10));
+				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal")/taille_div,listStands.getJsonObject(0).getInt("vertical")/taille_div));
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
 			/*for(int i = 0;i<listHubs.size() ;i++){
 				extremitesHub.add(new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
 			}*/
-			extremitesHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/10,listHubs.getJsonObject(0).getInt("vertical")/10);
+			extremitesHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/taille_div,listHubs.getJsonObject(0).getInt("vertical")/taille_div);
 			System.out.println(extremitesHub);
 		}catch(FileNotFoundException e){
 			System.err.print("erreur");
@@ -68,14 +79,14 @@ public class Map extends JPanel{
 		}
 		
 		/*Bords*/
-		LinkedList<Coord> listObsUp = new LinkedList<Coord>(Arrays.asList(new Coord(0,0),new Coord(x,0),new Coord(x,0),new Coord(0,0)));
+		/*LinkedList<Coord> listObsUp = new LinkedList<Coord>(Arrays.asList(new Coord(0,0),new Coord(x,0),new Coord(x,0),new Coord(0,0)));
 		obstacles.add(new Obstacle(listObsUp));
 		LinkedList<Coord> listObsLeft = new LinkedList<Coord>(Arrays.asList(new Coord(0,0),new Coord(0,y),new Coord(0,y),new Coord(0,0)));
 		obstacles.add(new Obstacle(listObsLeft));
 		LinkedList<Coord> listObsDown = new LinkedList<Coord>(Arrays.asList(new Coord(0,y),new Coord(x,y),new Coord(x,y),new Coord(0,y)));
 		obstacles.add(new Obstacle(listObsDown));
 		LinkedList<Coord> listObsRight = new LinkedList<Coord>(Arrays.asList(new Coord(x,0),new Coord(x,y),new Coord(x,y),new Coord(x,0)));
-		obstacles.add(new Obstacle(listObsRight));
+		obstacles.add(new Obstacle(listObsRight));*/
 		
 		
 	}

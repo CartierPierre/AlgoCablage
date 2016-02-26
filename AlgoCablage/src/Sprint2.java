@@ -1,10 +1,10 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import javax.json.Json;
-import javax.json.JsonArray;
+
+
 import javax.json.JsonObject;
 import javax.swing.JFrame;
 
@@ -76,7 +76,7 @@ public class Sprint2 {
 			 
 			JFrame fenetre = new JFrame();
 			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			fenetre.setSize(tailleX, tailleY);
+			fenetre.setSize(map1.getTailleX()+100, map1.getTailleY()+100);
 			fenetre.add(map1);
 			fenetre.setVisible(true);
 	}

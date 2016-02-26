@@ -1,0 +1,264 @@
+{	
+	"taille":{"vertical":2400,"horizontal":4475},
+	"obstacles":[
+		{"sommets":[		
+			{"vertical": 500,
+			"horizontal":200
+			},
+			{"vertical": 500,
+			"horizontal":800
+			},
+			{"vertical": 1400,
+			"horizontal":800
+			},
+			{"vertical": 1400,
+			"horizontal":200
+			}]
+		},{"sommets":[			
+			{"vertical": 500,
+			"horizontal":1000
+			},
+			{"vertical": 500,
+			"horizontal":1600
+			},
+			{"vertical": 1400,
+			"horizontal":1600
+			},
+			{"vertical": 1400,
+			"horizontal":1000
+			}]
+		},{"sommets":[			
+			{"vertical": 500,
+			"horizontal":1800
+			},
+			{"vertical": 500,
+			"horizontal":2674
+			},
+			{"vertical": 1400,
+			"horizontal":2674
+			},
+			{"vertical": 1400,
+			"horizontal":1800
+			}]
+		},{"sommets":[			
+			{"vertical": 500,
+			"horizontal":2874
+			},
+			{"vertical": 500,
+			"horizontal":3474
+			},
+			{"vertical": 800,
+			"horizontal":3474
+			},
+			{"vertical": 800,
+			"horizontal":2874
+			}]
+		},{"sommets":[			
+			{"vertical": 800,
+			"horizontal":2874
+			},
+			{"vertical": 800,
+			"horizontal":3474
+			},
+			{"vertical": 1400,
+			"horizontal":3474
+			},
+			{"vertical": 1400,
+			"horizontal":2874
+			}]
+		},{"sommets":[			
+			{"vertical": 500,
+			"horizontal":3674
+			},
+			{"vertical": 500,
+			"horizontal":3974
+			},
+			{"vertical": 800,
+			"horizontal":3974
+			},
+			{"vertical": 800,
+			"horizontal":3674
+			}]
+		},{"sommets":[				
+			{"vertical": 800,
+			"horizontal":3674
+			},
+			{"vertical": 800,
+			"horizontal":3974
+			},
+			{"vertical": 1400,
+			"horizontal":3974
+			},
+			{"vertical": 1400,
+			"horizontal":3674
+			}]
+		},{"sommets":[				
+			{"vertical": 500,
+			"horizontal":3974
+			},
+			{"vertical": 500,
+			"horizontal":4274
+			},
+			{"vertical": 800,
+			"horizontal":4274
+			},
+			{"vertical": 800,
+			"horizontal":3974
+			}]
+		},{"sommets":[			
+			{"vertical": 800,
+			"horizontal":3974
+			},
+			{"vertical": 800,
+			"horizontal":4274
+			},
+			{"vertical": 1400,
+			"horizontal":4274
+			},
+			{"vertical": 1400,
+			"horizontal":3974
+			}]
+		},{"sommets":[			
+			{"vertical": 1600,
+			"horizontal":200
+			},
+			{"vertical": 1600,
+			"horizontal":500
+			},
+			{"vertical": 2200,
+			"horizontal":500
+			},
+			{"vertical": 2200,
+			"horizontal":200
+			}]
+		},{"sommets":[			
+			{"vertical": 1600,
+			"horizontal":500
+			},
+			{"vertical": 1600,
+			"horizontal":800
+			},
+			{"vertical": 2200,
+			"horizontal":800
+			},
+			{"vertical": 2200,
+			"horizontal":500
+			}]
+		},{"sommets":[			
+			{"vertical": 1600,
+			"horizontal":1050
+			},
+			{"vertical": 1600,
+			"horizontal":1650
+			},
+			{"vertical": 2200,
+			"horizontal":1650
+			},
+			{"vertical": 2200,
+			"horizontal":1050
+			}]
+		},{"sommets":[			
+			{"vertical": 1600,
+			"horizontal":1925
+			},
+			{"vertical": 1600,
+			"horizontal":2525
+			},
+			{"vertical": 2200,
+			"horizontal":2525
+			},
+			{"vertical": 2200,
+			"horizontal":1925
+			}]
+		},{"sommets":[		
+			{"vertical": 1600,
+			"horizontal":2775
+			},
+			{"vertical": 1600,
+			"horizontal":3375
+			},
+			{"vertical": 2200,
+			"horizontal":3375
+			},
+			{"vertical": 2200,
+			"horizontal":2775
+			}]
+		},{"sommets":[		
+			{"vertical": 1600,
+			"horizontal":3625
+			},
+			{"vertical": 1600,
+			"horizontal":4225
+			},
+			{"vertical": 2200,
+			"horizontal":4225
+			},
+			{"vertical": 2200,
+			"horizontal":3625
+			}]
+		},{"sommets":[
+			{"vertical": 0,
+			"horizontal":2370
+			},
+			{"vertical": 0,
+			"horizontal":2670
+			},
+			{"vertical": 1,
+			"horizontal":2670
+			},
+			{"vertical": 1,
+			"horizontal":2370
+			}]
+		},{"sommets":[
+			{"vertical": 299,
+			"horizontal":2370
+			},
+			{"vertical": 299,
+			"horizontal":2670
+			},
+			{"vertical": 300,
+			"horizontal":2670
+			},
+			{"vertical": 300,
+			"horizontal":2370
+			}]
+		},{"sommets":[
+			{"vertical": 0,
+			"horizontal":2670
+			},
+			{"vertical": 0,
+			"horizontal":3270
+			},
+			{"vertical": 300,
+			"horizontal":3270
+			},
+			{"vertical": 300,
+			"horizontal":2670
+			}]
+		}],
+		
+	"raccordHub":[
+		{"vertical": 30,
+		"horizontal":2400
+		}],
+		
+	"raccordStand":[
+		{"vertical": 220,
+		"horizontal":1620
+		},
+		{"vertical": 520,
+		"horizontal": 1970
+		},
+		{"vertical": 1070,
+		"horizontal":1620
+		},
+		{"vertical": 2237,
+		"horizontal":1100
+		},
+		{"vertical": 3250,
+		"horizontal": 820
+		},
+		{"vertical": 3950,
+		"horizontal":820
+		}]
+}
