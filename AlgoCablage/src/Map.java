@@ -27,13 +27,13 @@ public class Map extends JPanel{
 		 this.cables = new LinkedList<Cable>();
 		 this.graphe = new LinkedList<Sommet>();
 		 this.extremitesStand = new LinkedList<Coord>();
-		 this.extremitesHub = new LinkedList<Coord>();
+		 this.extremitesHub = null;
 		 this.tailleX=x;
 		 this.tailleY=y;
 		 
 		 JsonObject carte;
 		try{
-			carte = Json.createReader(new FileReader("carte.json")).readObject();
+			carte = Json.createReader(new FileReader("270216-itpartners.json")).readObject();
 			
 			
 			
@@ -45,21 +45,22 @@ public class Map extends JPanel{
 				JsonArray listSommets = obstacle.getJsonArray("sommets");
 				tmpObs=new Obstacle();
 				for(int j = 0;j<listSommets.size() ;j++){
-					tmpObs.addSommets( new Coord(listSommets.getJsonObject(j).getInt("horizontal"),listSommets.getJsonObject(j).getInt("vertical")));
+					tmpObs.addSommets( new Coord(listSommets.getJsonObject(j).getInt("horizontal")/10,listSommets.getJsonObject(j).getInt("vertical")/10));
 				}
 				obstacles.add(tmpObs);
 			}
 			
 			JsonArray listStands=carte.getJsonArray("raccordStand");
 			for(int i = 0;i<listStands.size() ;i++){
-				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal"),listStands.getJsonObject(0).getInt("vertical")));
+				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal")/10,listStands.getJsonObject(0).getInt("vertical")/10));
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
 			/*for(int i = 0;i<listHubs.size() ;i++){
 				extremitesHub.add(new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
 			}*/
-			extremitesHub = new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
+			extremitesHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/10,listHubs.getJsonObject(0).getInt("vertical")/10);
+			System.out.println(extremitesHub);
 		}catch(FileNotFoundException e){
 			System.err.print("erreur");
 			System.exit(0);
@@ -101,11 +102,11 @@ public class Map extends JPanel{
 		this.extremitesStand.add(ext);
 	}
 
-	public LinkedList<Coord> getExtremitesHub() {
+	public Coord getExtremitesHub() {
 		return extremitesHub;
 	}
 
-	public void setExtremitesHub(LinkedList<Coord> extremitesHub) {
+	public void setExtremitesHub(Coord extremitesHub) {
 		this.extremitesHub = extremitesHub;
 	}
 
