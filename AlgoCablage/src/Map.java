@@ -10,6 +10,11 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.swing.JPanel;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 @SuppressWarnings("serial")
 
 public class Map extends JPanel{
@@ -38,7 +43,7 @@ public class Map extends JPanel{
 		 
 		 JsonObject carte;
 		try{
-			carte = Json.createReader(new FileReader("270216-itpartners.json")).readObject();
+			carte = Json.createReader(new FileReader("carte.json")).readObject();
 			
 			
 			
@@ -184,6 +189,45 @@ public class Map extends JPanel{
 		}
 		return true;
 	}
+	
+	
+	public void exportCablesJSON(){
+		JSONObject obj = new JSONObject();
+		JSONArray listeCables = new JSONArray();
+		
+		for(Cable c:cables){
+			
+			System.out.println(c);
+			c.epurerAngles();
+			System.out.println(c);
+
+			JSONArray tmpA = new JSONArray();
+			
+          	LinkedList<Coord> points = (LinkedList<Coord>) c.getAngles();
+          	for(int i=0;i<points.size();i++){
+          		JSONObject tmpO = new JSONObject();
+          		tmpO.put("horizontal",points.get(i).getX());
+          		tmpO.put("vertical", points.get(i).getY());
+          		tmpA.add(tmpO);
+          	}
+          	listeCables.add(tmpA);
+          }
+		
+		obj.put("cables", listeCables);
+
+		try {
+
+			FileWriter file = new FileWriter("test.json");
+			file.write(obj.toJSONString());
+			file.flush();
+			file.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	@Override
 	public String toString() {

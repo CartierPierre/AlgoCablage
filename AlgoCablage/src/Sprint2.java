@@ -73,6 +73,8 @@ public class Sprint2 {
 			map1.addCable(cable4);*/
 			
 			/*Affichage de la map*/
+			
+			map1.exportCablesJSON();
 			 
 			JFrame fenetre = new JFrame();
 			fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
