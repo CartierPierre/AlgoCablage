@@ -19,25 +19,22 @@ import org.json.simple.JSONObject;
 
 public class Map extends JPanel{
 	
-	
-	static final int taille_div = 3;
-	
+	static final int taille_div = 5;
 	
 	private LinkedList<Obstacle> obstacles;
 	private LinkedList<Coord> extremitesStand;
-	private Coord extremitesHub;
+	private Coord extremiteHub;
 	private LinkedList<Cable> cables;
 	private LinkedList<Sommet> graphe;
 	private int tailleX;
 	private int tailleY;
 	
-	public Map(int x, int y){
-		 setPreferredSize(new Dimension(x, y));
+	public Map(){ //A corriger
 		 this.obstacles = new LinkedList<Obstacle>();
 		 this.cables = new LinkedList<Cable>();
 		 this.graphe = new LinkedList<Sommet>();
 		 this.extremitesStand = new LinkedList<Coord>();
-		 this.extremitesHub = null;
+		 this.extremiteHub = null;
 		/* this.tailleX=x;
 		 this.tailleY=y;*/
 		 
@@ -52,7 +49,7 @@ public class Map extends JPanel{
 			JsonObject taille=carte.getJsonObject("taille");
 			tailleX=taille.getInt("horizontal")/taille_div;
 			tailleY=taille.getInt("vertical")/taille_div;
-			 setPreferredSize(new Dimension(tailleX, tailleY));
+			setPreferredSize(new Dimension(tailleX, tailleY));
 			
 			
 			JsonArray listObstacles=carte.getJsonArray("obstacles");
@@ -68,16 +65,15 @@ public class Map extends JPanel{
 			
 			JsonArray listStands=carte.getJsonArray("raccordStand");
 			for(int i = 0;i<listStands.size() ;i++){
-				extremitesStand.add(new Coord(listStands.getJsonObject(0).getInt("horizontal")/taille_div,listStands.getJsonObject(0).getInt("vertical")/taille_div));
+				extremitesStand.add(new Coord(listStands.getJsonObject(i).getInt("horizontal")/taille_div,listStands.getJsonObject(i).getInt("vertical")/taille_div));
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
 			/*for(int i = 0;i<listHubs.size() ;i++){
 				extremitesHub.add(new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
 			}*/
-			extremitesHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/taille_div,listHubs.getJsonObject(0).getInt("vertical")/taille_div);
-			System.out.println(extremitesHub);
-		}catch(FileNotFoundException e){
+			extremiteHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/taille_div,listHubs.getJsonObject(0).getInt("vertical")/taille_div);
+			}catch(FileNotFoundException e){
 			System.err.print("erreur");
 			System.exit(0);
 			//end program and watch the world burn
@@ -118,12 +114,12 @@ public class Map extends JPanel{
 		this.extremitesStand.add(ext);
 	}
 
-	public Coord getExtremitesHub() {
-		return extremitesHub;
+	public Coord getExtremiteHub() {
+		return extremiteHub;
 	}
 
-	public void setExtremitesHub(Coord extremitesHub) {
-		this.extremitesHub = extremitesHub;
+	public void setExtremiteHub(Coord extremitesHub) {
+		this.extremiteHub = extremitesHub;
 	}
 
 	public int getTailleX() {
@@ -189,17 +185,13 @@ public class Map extends JPanel{
 		}
 		return true;
 	}
-	
-	
-	public void exportCablesJSON(){
+    
+    public void exportCablesJSON(){
 		JSONObject obj = new JSONObject();
 		JSONArray listeCables = new JSONArray();
 		
 		for(Cable c:cables){
-			
-			System.out.println(c);
 			c.epurerAngles();
-			System.out.println(c);
 
 			JSONArray tmpA = new JSONArray();
 			
@@ -226,8 +218,6 @@ public class Map extends JPanel{
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	@Override
 	public String toString() {

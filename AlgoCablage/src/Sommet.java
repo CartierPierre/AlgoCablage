@@ -6,13 +6,25 @@ public class Sommet extends Coord {
 	private int distFromStart; //Distance du hub
 	private LinkedList<Arc> arcs;
 	private Sommet pere;
+	private Cable cable;
 	
 	
+	public Cable getCable() {
+		return cable;
+	}
+
+
+	public void setCable(Cable cable) {
+		this.cable = cable;
+	}
+
+
 	public Sommet(int x, int y) {
 		super(x, y);
 		distFromStart = Integer.MAX_VALUE;
 		this.arcs = new LinkedList<Arc>();
 		this.pere = null;
+		this.cable = null;
 	}
 
 
@@ -63,7 +75,8 @@ public class Sommet extends Coord {
 		{
 			chaineArs=chaineArs+"\n"+itArc.next().toString(); 
 		}
-		return "Sommet [x="+this.getX() + ", y=" + this.getY() +", distFromStart=" + distFromStart + ", arcs=" + chaineArs + ", pere=" +chainep+   "]";
+		if(cable==null) return "Sommet [x="+this.getX() + ", y=" + this.getY() +", distFromStart=" + distFromStart + ", arcs=" + chaineArs + ", pere=" +chainep+ ", cable=" +"null"+   "]";
+		return "Sommet [x="+this.getX() + ", y=" + this.getY() +", distFromStart=" + distFromStart + ", arcs=" + chaineArs + ", pere=" +chainep+ ", cable=" +cable.getNum()+   "]";
 	}
 
 }
