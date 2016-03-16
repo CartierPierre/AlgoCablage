@@ -145,46 +145,77 @@ public class Algo {
 			if(tmpSommet2.getCable()==cable){ //Occupé à gauche
 				tmpSommet2=chercherSommet(graphe, x+pas,y);
 			}
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
-			tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), y-pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), y+pas+pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			bornerAngle(tmpSommet.getCable(),tmpSommet2.getX(),tmpSommet2.getY()-pas,tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY()-pas-pas);
+			if(tmpSommet2!=null){
+				tmpSommet2.setCable(tmpSommet.getCable());
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
+				tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), y-pas);
+				if(tmpSommet2!=null){
+					repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+					tmpSommet2.setCable(tmpSommet.getCable());
+					tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), y+pas+pas);
+					if(tmpSommet2!=null){
+						repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+						tmpSommet2.setCable(tmpSommet.getCable());
+						bornerAngle(tmpSommet.getCable(),tmpSommet2.getX(),tmpSommet2.getY()-pas,tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY()-pas-pas);
+		
+					}
+				}
+			}
 		}
 		else if(somGauche!=null && somDroite!=null && somGauche.getCable()==somDroite.getCable() && somGauche.getCable()!=null){ //droite horizontale
 			tmpSommet2=chercherSommet(graphe, x, y-pas);
-			if(tmpSommet2.getCable()==cable){ //Occupé à gauche
+			if(tmpSommet2.getCable()==cable){ //Occupé en 
 				tmpSommet2=chercherSommet(graphe, x, y+pas);
 			}
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
-			tmpSommet2=chercherSommet(graphe, x-pas, tmpSommet2.getY());
-			tmpSommet2.setCable(tmpSommet.getCable());
-			tmpSommet2=chercherSommet(graphe, x+pas+pas, tmpSommet2.getY());
-			tmpSommet2.setCable(tmpSommet.getCable());
-			bornerAngle(tmpSommet.getCable(),tmpSommet2.getX()-pas,tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX()-pas-pas,tmpSommet2.getY());
+			if(tmpSommet2!=null){
+				tmpSommet2.setCable(tmpSommet.getCable());
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
+				tmpSommet2=chercherSommet(graphe, x-pas, tmpSommet2.getY());
+				if(tmpSommet2!=null){
+					repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+					tmpSommet2.setCable(tmpSommet.getCable());
+					tmpSommet2=chercherSommet(graphe, x+pas+pas, tmpSommet2.getY());
+					if(tmpSommet2!=null){
+						repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+						tmpSommet2.setCable(tmpSommet.getCable());
+						bornerAngle(tmpSommet.getCable(),tmpSommet2.getX()-pas,tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX()-pas-pas,tmpSommet2.getY());
+					}
+				}
+			}
 		}
 		else if(somGauche!=null && somHaut!=null && somGauche.getCable()==somHaut.getCable() && somGauche.getCable()!=null){ //angle gauche-haut
 			tmpSommet2=chercherSommet(graphe, x-pas, y-pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,x-pas,y-pas);
+			if(tmpSommet2!=null){
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				tmpSommet2.setCable(tmpSommet.getCable());
+				modifierAngle(tmpSommet.getCable(),x,y,x-pas,y-pas);
+			}
 		}
 		else if(somGauche!=null && somBas!=null && somGauche.getCable()==somBas.getCable() && somGauche.getCable()!=null){//angle gauche-bas
 			tmpSommet2=chercherSommet(graphe, x-pas, y+pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,x-pas,y+pas);
+			if(tmpSommet2!=null){
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				tmpSommet2.setCable(tmpSommet.getCable());
+				modifierAngle(tmpSommet.getCable(),x,y,x-pas,y+pas);
+			}
 		}
 		else if(somHaut!=null && somDroite!=null && somDroite.getCable()==somHaut.getCable() && somDroite.getCable()!=null){//angle droite-haut
 			tmpSommet2=chercherSommet(graphe, x+pas, y-pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,x+pas,y-pas);
+			if(tmpSommet2!=null){
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				tmpSommet2.setCable(tmpSommet.getCable());
+				modifierAngle(tmpSommet.getCable(),x,y,x+pas,y-pas);
+			}
 		}
 		else if(somDroite!=null && somBas!=null && somDroite.getCable()==somBas.getCable() && somDroite.getCable()!=null){//angle droite-bas
 			tmpSommet2=chercherSommet(graphe, x+pas, y+pas);
-			tmpSommet2.setCable(tmpSommet.getCable());
-			modifierAngle(tmpSommet.getCable(),x,y,x+pas,y+pas);
+			if(tmpSommet2!=null){
+				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
+				tmpSommet2.setCable(tmpSommet.getCable());
+				modifierAngle(tmpSommet.getCable(),x,y,x+pas,y+pas);
+			}
 		}
 		else{
 			System.err.println("Problème lors du repoussement du cable");

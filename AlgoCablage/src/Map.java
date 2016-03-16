@@ -74,7 +74,7 @@ public class Map extends JPanel{
 			}*/
 			extremiteHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/taille_div,listHubs.getJsonObject(0).getInt("vertical")/taille_div);
 			}catch(FileNotFoundException e){
-			System.err.print("erreur");
+			System.err.print("Erreur lors du chargement de la carte");
 			System.exit(0);
 			//end program and watch the world burn
 		}
