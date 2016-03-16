@@ -42,77 +42,14 @@ public class Algo {
 	}
 	
 	public Cable cheminLePLusCourt(LinkedList<Sommet> graphe, int x, int y, int pas){ // Transforme le dijkstra en angles pour le cable
-		Sommet tmpSommet=null;
-		//Sommet supprSommet=null;
+		Sommet tmpSommet=chercherSommet(graphe, x, y);
 		Cable cable = new Cable();
-		for(Sommet sommet:graphe){ //On cherche le sommet du graphe aux coordonnees (x,y) A CHANGER AVEC CHERCHERSOMMET
-			if(sommet.getX() == x && sommet.getY() == y){
-				tmpSommet=sommet;
-				break;
-			}
-		}
+		
 		while(tmpSommet != null){
-			//supprSommet=tmpSommet;
 			if(tmpSommet.getCable()!=null){ //Si un cable est deja present //A GENERALISER POUR N CABLES
 				repousserCable(graphe, tmpSommet.getX(), tmpSommet.getY(), pas);
-				
-				/*Sommet somHaut=chercherSommet(graphe,tmpSommet.getX()-pas, tmpSommet.getY());
-				Sommet somBas=chercherSommet(graphe,tmpSommet.getX()+pas, tmpSommet.getY());
-				Sommet somGauche=chercherSommet(graphe,tmpSommet.getX(), tmpSommet.getY()-pas);
-				Sommet somDroite=chercherSommet(graphe,tmpSommet.getX(), tmpSommet.getY()+pas);
-				Sommet tmpSommet2=null;
-				if(somHaut.getCable()==somBas.getCable() && somHaut.getCable()!=null){ //droite verticale
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()-pas, tmpSommet.getY());
-					if(tmpSommet2.getCable()==cable){ //Occupé à gauche
-						tmpSommet2=chercherSommet(graphe, tmpSommet.getX()+pas, tmpSommet.getY());
-					}
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet2.getX(),tmpSommet2.getY());
-					tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), tmpSommet.getY()-pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					tmpSommet2=chercherSommet(graphe, tmpSommet2.getX(), tmpSommet.getY()+pas+pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					bornerAngle(tmpSommet.getCable(),tmpSommet2.getX(),tmpSommet2.getY()-pas,tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY()-pas-pas);
-				}
-				else if(somGauche.getCable()==somDroite.getCable() && somGauche.getCable()!=null){ //droite horizontale
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX(), tmpSommet.getY()-pas);
-					if(tmpSommet2.getCable()==cable){ //Occupé à gauche
-						tmpSommet2=chercherSommet(graphe, tmpSommet.getX(), tmpSommet.getY()+pas);
-					}
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet2.getX(),tmpSommet2.getY());
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()-pas, tmpSommet2.getY());
-					tmpSommet2.setCable(tmpSommet.getCable());
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()+pas+pas, tmpSommet2.getY());
-					tmpSommet2.setCable(tmpSommet.getCable());
-					bornerAngle(tmpSommet.getCable(),tmpSommet2.getX()-pas,tmpSommet2.getY(),tmpSommet2.getX(),tmpSommet2.getY(),tmpSommet2.getX()-pas-pas,tmpSommet2.getY());
-				}
-				else if(somGauche.getCable()==somHaut.getCable() && somGauche.getCable()!=null){ //angle gauche-haut
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()-pas, tmpSommet.getY()-pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet.getX()-pas,tmpSommet.getY()-pas);
-				}
-				else if(somGauche.getCable()==somBas.getCable() && somGauche.getCable()!=null){//angle gauche-bas
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()-pas, tmpSommet.getY()+pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet.getX()-pas,tmpSommet.getY()+pas);
-				}
-				else if(somDroite.getCable()==somHaut.getCable() && somDroite.getCable()!=null){//angle droite-haut
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()+pas, tmpSommet.getY()-pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet.getX()+pas,tmpSommet.getY()-pas);
-				}
-				else if(somDroite.getCable()==somBas.getCable() && somDroite.getCable()!=null){//angle droite-bas
-					tmpSommet2=chercherSommet(graphe, tmpSommet.getX()+pas, tmpSommet.getY()+pas);
-					tmpSommet2.setCable(tmpSommet.getCable());
-					modifierAngle(tmpSommet.getCable(),tmpSommet.getX(),tmpSommet.getY(),tmpSommet.getX()+pas,tmpSommet.getY()+pas);
-				}
-				else{
-					System.err.println("Problème lors du repoussement du cable");
-				}*/
 			} //Fin de déplacement du cable bloquant
 			
-			/*ICI ON DOIT, NON PAS SUPPRIMER, MAIS DEFINIR UNE PRIORITE AVEC UN NUMERO DE CABLE QUI PASSE PAR LE POINT*/
 			cable.addAngle(tmpSommet); //On ajoute les segments (angles plats)
 			tmpSommet.setCable(cable);
 			boolean alter=false;
@@ -126,9 +63,7 @@ public class Algo {
 				}
 			}
 			if(!alter) tmpSommet=tmpSommet.getPere();
-			//graphe.remove(supprSommet);
 		} //Fin du tracé, arrivé au hub
-		//cable.epurerAngles(); -> A faire séparement (etienne le fait pendant l'ecriture en json visiblement)
 		return cable;
 	}
 	

@@ -49,20 +49,6 @@ public class Obstacle {
 		return max;
 	}
 	
-	//**** 2 obstacles egaux - inutile pour le moment
-	/*public boolean equals(Obstacle ob1,Obstacle ob2)
-	{
-		Iterator<Coord> itCordOb1=ob1.getSommets().iterator(); 
-		Iterator<Coord> itCordOb2=ob2.getSommets().iterator(); 
-		while(itCordOb1.hasNext())
-		{
-			Coord c1 =itCordOb1.next(); 
-			if (c1.appartienListPoint(c1,ob2.getSommets() )==false )
-				return false ;
-		}
-		return true; 
-	}*/
-	
 	@Override
 	public String toString() {
 		String chaine=""; 

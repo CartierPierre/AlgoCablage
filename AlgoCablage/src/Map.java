@@ -29,14 +29,12 @@ public class Map extends JPanel{
 	private int tailleX;
 	private int tailleY;
 	
-	public Map(){ //A corriger
+	public Map(){
 		 this.obstacles = new LinkedList<Obstacle>();
 		 this.cables = new LinkedList<Cable>();
 		 this.graphe = new LinkedList<Sommet>();
 		 this.extremitesStand = new LinkedList<Coord>();
 		 this.extremiteHub = null;
-		/* this.tailleX=x;
-		 this.tailleY=y;*/
 		 
 		 JsonObject carte;
 		try{
@@ -69,25 +67,12 @@ public class Map extends JPanel{
 			}
 			
 			JsonArray listHubs=carte.getJsonArray("raccordHub");
-			/*for(int i = 0;i<listHubs.size() ;i++){
-				extremitesHub.add(new Coord(listHubs.getJsonObject(i).getInt("horizontal"),listHubs.getJsonObject(i).getInt("vertical")));
-			}*/
+			
 			extremiteHub = new Coord(listHubs.getJsonObject(0).getInt("horizontal")/taille_div,listHubs.getJsonObject(0).getInt("vertical")/taille_div);
 			}catch(FileNotFoundException e){
 			System.err.print("Erreur lors du chargement de la carte");
 			System.exit(0);
-			//end program and watch the world burn
 		}
-		
-		/*Bords*/
-		/*LinkedList<Coord> listObsUp = new LinkedList<Coord>(Arrays.asList(new Coord(0,0),new Coord(x,0),new Coord(x,0),new Coord(0,0)));
-		obstacles.add(new Obstacle(listObsUp));
-		LinkedList<Coord> listObsLeft = new LinkedList<Coord>(Arrays.asList(new Coord(0,0),new Coord(0,y),new Coord(0,y),new Coord(0,0)));
-		obstacles.add(new Obstacle(listObsLeft));
-		LinkedList<Coord> listObsDown = new LinkedList<Coord>(Arrays.asList(new Coord(0,y),new Coord(x,y),new Coord(x,y),new Coord(0,y)));
-		obstacles.add(new Obstacle(listObsDown));
-		LinkedList<Coord> listObsRight = new LinkedList<Coord>(Arrays.asList(new Coord(x,0),new Coord(x,y),new Coord(x,y),new Coord(x,0)));
-		obstacles.add(new Obstacle(listObsRight));*/
 		
 		
 	}
