@@ -183,8 +183,8 @@ public class Map extends JPanel{
           	LinkedList<Coord> points = (LinkedList<Coord>) c.getAngles();
           	for(int i=0;i<points.size();i++){
           		JSONObject tmpO = new JSONObject();
-          		tmpO.put("horizontal",points.get(i).getX());
-          		tmpO.put("vertical", points.get(i).getY());
+          		tmpO.put("horizontal",points.get(i).getX()*taille_div);
+          		tmpO.put("vertical", points.get(i).getY()*taille_div);
           		tmpA.add(tmpO);
           	}
           	listeCables.add(tmpA);

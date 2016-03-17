@@ -31,7 +31,7 @@ public class Algo {
 	}
 	
 	
-	public void dijkstra(LinkedList<Sommet> graphe, Sommet sommet){
+	public void dijkstra(LinkedList<Sommet> graphe, Sommet sommet){ //Permet de mettre a jour les distances par rapport au hub pour tous les sommets du graphe
 		for(Arc arc:sommet.getArcs()){ // On met a jour la distance de tous les sommets reliés
 			if(arc.getSommet().getDistFromStart() - sommet.getDistFromStart() > arc.getLongueur()){ //Si elle est plus courte
 				arc.getSommet().setDistFromStart(arc.getLongueur() + sommet.getDistFromStart());
@@ -42,19 +42,19 @@ public class Algo {
 	}
 	
 	public Cable cheminLePLusCourt(LinkedList<Sommet> graphe, int x, int y, int pas){ // Transforme le dijkstra en angles pour le cable
-		Sommet tmpSommet=chercherSommet(graphe, x, y);
+		Sommet tmpSommet=chercherSommet(graphe, x, y); //On cherche le sommet en x,y
 		Cable cable = new Cable();
 		
-		while(tmpSommet != null){
-			if(tmpSommet.getCable()!=null){ //Si un cable est deja present //A GENERALISER POUR N CABLES
-				repousserCable(graphe, tmpSommet.getX(), tmpSommet.getY(), pas);
-			} //Fin de déplacement du cable bloquant
+		while(tmpSommet != null){ //Tant que nous ne sommes pas arrivé au hub
+			if(tmpSommet.getCable()!=null){ //Si un cable est deja present
+				repousserCable(graphe, tmpSommet.getX(), tmpSommet.getY(), pas); //On repousse les autres cables //Probable source de bug
+			} //Fin de déplacement des cables bloquants
 			
 			cable.addAngle(tmpSommet); //On ajoute les segments (angles plats)
-			tmpSommet.setCable(cable);
+			tmpSommet.setCable(cable); //On indique au graphe que le cable passe par là
 			boolean alter=false;
-			if(tmpSommet.getPere()!=null && tmpSommet.getPere().getCable()!=null){ //On cherche un chemin autre de meme longueur
-				for(Arc arc:tmpSommet.getArcs()){
+			if(tmpSommet.getPere()!=null && tmpSommet.getPere().getCable()!=null){ //Si le sommet suivant est deja occupé
+				for(Arc arc:tmpSommet.getArcs()){ //On cherche un chemin de meme longueur alternatif
 					if(tmpSommet.getPere().getDistFromStart()>=arc.getSommet().getDistFromStart() && arc.getSommet()!=tmpSommet.getPere()){ //Si un autre chemin de meme longueur existe
 						tmpSommet=arc.getSommet();
 						alter=true;
@@ -67,7 +67,7 @@ public class Algo {
 		return cable;
 	}
 	
-	public void repousserCable(LinkedList<Sommet> graphe, int x, int y, int pas){
+	public void repousserCable(LinkedList<Sommet> graphe, int x, int y, int pas){ //Permet de déplacer les cables deja existants avec des appels récursifs
 		Sommet somHaut=chercherSommet(graphe,x-pas, y);
 		Sommet somBas=chercherSommet(graphe,x+pas, y);
 		Sommet somGauche=chercherSommet(graphe,x, y-pas);
@@ -80,7 +80,7 @@ public class Algo {
 			if(tmpSommet2.getCable()==cable){ //Occupé à gauche
 				tmpSommet2=chercherSommet(graphe, x+pas,y);
 			}
-			if(tmpSommet2!=null){
+			if(tmpSommet2!=null){ //On repousse le cable sur 3 sommets
 				tmpSommet2.setCable(tmpSommet.getCable());
 				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
 				modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
@@ -100,10 +100,10 @@ public class Algo {
 		}
 		else if(somGauche!=null && somDroite!=null && somGauche.getCable()==somDroite.getCable() && somGauche.getCable()!=null){ //droite horizontale
 			tmpSommet2=chercherSommet(graphe, x, y-pas);
-			if(tmpSommet2.getCable()==cable){ //Occupé en 
+			if(tmpSommet2.getCable()==cable){ //Occupé en haut
 				tmpSommet2=chercherSommet(graphe, x, y+pas);
 			}
-			if(tmpSommet2!=null){
+			if(tmpSommet2!=null){ //On repousse sur 3 sommets
 				tmpSommet2.setCable(tmpSommet.getCable());
 				repousserCable(graphe,tmpSommet2.getX(),tmpSommet2.getY(), pas);
 				modifierAngle(tmpSommet.getCable(),x,y,tmpSommet2.getX(),tmpSommet2.getY());
@@ -201,6 +201,7 @@ public class Algo {
     }
 	
 	public Sommet sortirObs(LinkedList<Sommet> graphe, Obstacle obs, Coord point){ //Version sortie la plus proche
+		//Permet de sortir d'un obstacle jusqu'au bord
 		int dist=Integer.MAX_VALUE;
 		int x=point.getX(); //Sécurité si x et y sont inchangés
 		int y=point.getY();
@@ -232,7 +233,8 @@ public class Algo {
 		return sortie; //On retourne un sommet avec un arc vers l'extremite du cable de l'obstacle
 	}
 	
-	public void relierObstacleGraphe(Map map, LinkedList<Sommet> graphe, Sommet point){ //Manque de précision
+	public void relierObstacleGraphe(Map map, LinkedList<Sommet> graphe, Sommet point){ //Manque de précision (petits décalages possibles)
+		//On relie le point créé dans la méthode précédente sur la graphe
 		int x=point.getX();
 		int y=point.getY();
 		Sommet plusProche=null;
@@ -248,7 +250,7 @@ public class Algo {
 		graphe.add(point); //On rajoute le point sur le graphe
 	}
 	
-	public void relierExtremiteGraphe(Map map, LinkedList<Sommet> graphe, Coord point){ //Fusion des deux précedentes méthodes
+	public void relierExtremiteGraphe(Map map, LinkedList<Sommet> graphe, Coord point){ //Fusion des deux précedentes méthodes (toujours le probleme de décalage possible)
 		int x=point.getX();
 		int y=point.getY();
 		Sommet plusProche=null;
@@ -283,12 +285,12 @@ public class Algo {
 		graphe.add(ext); //On ajoute le point au graphe
 	}
 	
-	public void trierExtremitesStand(Map map1) {
+	public void trierExtremitesStand(Map map1) { //On trie les extremités des stands selon les angles avec le hub et une norme
 		Coord norme = new Coord(map1.getExtremiteHub().getX(),map1.getExtremiteHub().getY()); //Un point pour calculer l'angle, 0 degré étant un point aligné a gauche horizontal
 		LinkedList<Double> anglesStand = new LinkedList<Double>();
 		LinkedList<Coord> listeExt = map1.getExtremitesStand();
 		double angle=0.0;
-		for(int i=0; i<listeExt.size(); i++){
+		for(int i=0; i<listeExt.size(); i++){ //Calcul de l'angle
 			angle=-1.0*(-180+ Math.toDegrees(Math.atan2((double) 1.0*listeExt.get(i).getY()-norme.getY(), (double) 1.0*listeExt.get(i).getX()-norme.getX())));
 			if(angle<0)
 				angle+=360;
@@ -315,7 +317,7 @@ public class Algo {
 	}
 
 
-	public Sommet chercherSommet(LinkedList<Sommet> graphe, int x, int y) {
+	public Sommet chercherSommet(LinkedList<Sommet> graphe, int x, int y) { //Renvoie le sommet en x,y
 		for(Sommet som:graphe){
 			if(som.getX()==x && som.getY()==y)
 				return som;
